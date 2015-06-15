@@ -3,13 +3,25 @@ using System.Collections;
 
 public class Slingshot : MonoBehaviour {
 
-	public GameObject launchPoint;
+	//Fields seen in the inspector panel
+	public GameObject prefabProjectile;
+
+	//Internal variable
+	private GameObject launchPoint;
+	private Vector3 launchPos;
+	private GameObject projectile;
+
+	bool aimingMode;
 
 	void Awake(){
 		Transform launchPointTransform = transform.Find ("LaunchPoint");
 		launchPoint = launchPointTransform.gameObject;
 		launchPoint.SetActive (false);
-		}
+
+	
+		launchPos = launchPointTransform.position;
+	
+	}
 
 
 	void OnMouseEnter(){
@@ -20,6 +32,55 @@ public class Slingshot : MonoBehaviour {
 	void OnMouseExit(){
 		launchPoint.SetActive (false);
 		//print ("backe");
+	}
+
+	void OnMouseDown(){
+		aimingMode = true;
+
+		//Instatiate a new projectile 
+		projectile = Instantiate (prefabProjectile) as GameObject;
+
+		//Start it at the launchpoint
+		//Set the projectile's position to the launchPos
+
+
+		projectile.transform.position = launchPos;
+	
+		//Set isKinematic to true or false
+
+		projectile.GetComponent<Rigidbody> ().isKinematic = true;
+	
+	}
+
+	//void OnMouseUp(){
+	//	aimingMode = false;
+
+	//	projectile.GetComponent<Rigidbody> ().isKinematic = true;
+	//}
+	//
+
+
+	void Update(){
+		//if we're not in aiming mode, do nothing
+		if (!aimingMode) { 
+		
+			return;
+		}
+
+		//Get the current mouse position in 2D
+		Vector3 mousePos2D = Input.mousePosition;
+
+		//Convert it to 3D World coordinates
+		mousePos2D.z = - Camera.main.transform.position.z;
+		Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
+
+		//Find the difference between the launchPos and mouse position 
+		Vector3 mouseDelta = mousePos3D - launchPos;
+
+		//Move the projectile to this new position 
+		projectile.transform.position = mousePos3D; 
+
+
 	}
 
 	}
