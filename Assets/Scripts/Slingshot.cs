@@ -1,88 +1,144 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class Slingshot : MonoBehaviour {
+public class Slingshot : MonoBehaviour
+{
 
-	//Fields seen in the inspector panel
+	// Fields set in the Unity Inspector pane
 	public GameObject prefabProjectile;
-	public float shotMult = 0.4f;
+	public float velocityMult = 4f;
 
-	//Internal variable
+	public Image PowerUp;
+	
+
+	// Fields set dynamically
 	private GameObject launchPoint;
 	private Vector3 launchPos;
 	private GameObject projectile;
+	public static bool aimingMode;
+	private int timer = 150;
+	private static bool powerup;
+	public static bool loadAni;
+	public static bool shootAni;
+	public AudioClip[] audioClip;
 
-	bool aimingMode;
+	void Awake ()
+	{
+		//print ("Awake()");
+		Transform launchPointTrans = transform.FindChild ("LaunchPoint");
 
-	void Awake(){
-		Transform launchPointTransform = transform.Find ("LaunchPoint");
-		launchPoint = launchPointTransform.gameObject;
+		launchPoint = launchPointTrans.gameObject;
 		launchPoint.SetActive (false);
+		launchPos = launchPointTrans.position;
+	
+		powerup = false;
+		loadAni = false;
+		shootAni = false;
 
-	
-		launchPos = launchPointTransform.position;
-	
+		PowerUp.color = new Color (1f, 1f, 1f, 0f);
 	}
-
-
-	void OnMouseEnter(){
-		//print ("pups");
+	
+	void OnMouseEnter ()
+	{
+		//print ("Enter");
 		launchPoint.SetActive (true);
 	}
-
-	void OnMouseExit(){
-		launchPoint.SetActive (false);
-		//print ("backe");
+	
+	void OnMouseExit ()
+	{
+		//print ("Exit");
+		if (!aimingMode) 
+			launchPoint.SetActive (false);
 	}
+	
+	void OnMouseDown ()
+	{
+		//print ("Down");
 
-	void OnMouseDown(){
+
+		DestroyImmediate (projectile);
+		// Player pressed mouse while over Slingshot
 		aimingMode = true;
 
-		//Instantiate a new projectile 
-		projectile = Instantiate(prefabProjectile) as GameObject;
+		// Instantiate a projectile
+		projectile = Instantiate (prefabProjectile) as GameObject;
 
-		//Start it at the launchpoint
-		//Set the projectile's position t the launchPos
+		// Start it at launch position
 		projectile.transform.position = launchPos;
-	
-		//Set isKinematic to true or false
+
+		// Set it to kinematic for now
 		projectile.GetComponent<Rigidbody> ().isKinematic = true;
-	
+
+		loadAni = true; 
+		timer = 150;
+
+
 	}
 
+	void Update ()
+	{
+		// If the Slingshot is not in aiming mode, don't run this code
 
-	void Update(){
-		//if we're not in aiming mode, do nothing
-		if (!aimingMode) { 
+
+		if (!aimingMode)
 			return;
+
+		 timer--;
+		if (timer == 0) {
+			powerup = true;
+			PowerUp.color = new Color (1f, 1f, 1f, 1f);
+
 		}
-		
-		//Get the current mouse position in 2D
-		Vector3 mousePos2D = Input.mousePosition;
-		
-		//Convert it to 3D World coordinates
-		mousePos2D.z = - Camera.main.transform.position.z;
-		Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
-		
-		//Find the difference between the launchPos and mouse position 
+
+
+		// Get the current mouse position in 2D screen coordinates
+		Vector3 mousePos = Input.mousePosition;
+		// Convert the mouse position to 3D world coordinates
+		mousePos.z = - Camera.main.transform.position.z;
+		Vector3 mousePos3D = Camera.main.ScreenToWorldPoint (mousePos);
+
+		// Find the delta from launch position to 3D mouse position
 		Vector3 mouseDelta = mousePos3D - launchPos;
 
-		float maxMagnitude = this.GetComponent<SphereCollider> ().radius; 
-
+		// Limit mouseDelta to the radius of the Slingshot SphereCollider
+		float maxMagnitude = GetComponent<SphereCollider> ().radius;
 		mouseDelta = Vector3.ClampMagnitude (mouseDelta, maxMagnitude);
 
-		//Move the projectile to this new position 
-		projectile.transform.position = launchPos + mouseDelta; 
-
+		// Now move the projectile to this new position
+		projectile.transform.position = launchPos + mouseDelta;
+		
 		if (Input.GetMouseButtonUp (0)) {
+
+			launchPoint.SetActive (false);
+			// The mouse has been released
 			aimingMode = false;
+
+			PowerUp.color = new Color (1f, 1f, 1f, 0f);
+			// Fire off the projectile with given velocity
 			projectile.GetComponent<Rigidbody> ().isKinematic = false;
 
-			projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * shotMult;
+			if (powerup == true) {
+				projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * velocityMult * 2f;
+			} else {
+				projectile.GetComponent<Rigidbody> ().velocity = -mouseDelta * velocityMult;
+			}
 
-			followCam.S.poi =projectile;
+			// Set the Followcam's target to our projectile
+			FollowCam.S.poi = projectile;
+
+			// Set the reference to the projectile to null as early as possible
+			/*projectile = null;*/
+
+			GameController.ShotFired ();
+
+			powerup=false;
+
+			shootAni = true; 
+
+
 		}
-
+		
 	}
 
-	}
+}

@@ -1,0 +1,231 @@
+fileFormatVersion: 2
+guid: 0350c5885aa98284799a872bda00fd32
+timeCreated: 1436955400
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: jt_tube_01
+    100002: jt_tube_02
+    100004: jt_tube_03
+    100006: jt_tube_root
+    100008: MOD_Opening
+    100010: MOD_Thooth_Deckel
+    100012: MOD_Thoothpaste
+    100014: MOD_Tube
+    100016: //RootNode
+    400000: jt_tube_01
+    400002: jt_tube_02
+    400004: jt_tube_03
+    400006: jt_tube_root
+    400008: MOD_Opening
+    400010: MOD_Thooth_Deckel
+    400012: MOD_Thoothpaste
+    400014: MOD_Tube
+    400016: //RootNode
+    2300000: MOD_Thooth_Deckel
+    2300002: MOD_Opening
+    2300004: MOD_Tube
+    3300000: MOD_Thooth_Deckel
+    3300002: MOD_Opening
+    3300004: MOD_Tube
+    4300000: MOD_Tube
+    4300002: MOD_Opening
+    4300004: MOD_Thooth_Deckel
+    7400000: Shoot
+    7400002: Load
+    7400004: Hold
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: MOD_Opening
+    13700002: MOD_Tube
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Load
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: jt_tube_root
+        weight: 1
+      - path: jt_tube_root/jt_tube_01
+        weight: 1
+      - path: jt_tube_root/jt_tube_01/jt_tube_02
+        weight: 1
+      - path: jt_tube_root/jt_tube_01/jt_tube_02/jt_tube_03
+        weight: 1
+      - path: MOD_Thoothpaste
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Thooth_Deckel
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Tube
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Tube/MOD_Opening
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Shoot
+      takeName: Take 001
+      firstFrame: 21
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: jt_tube_root
+        weight: 1
+      - path: jt_tube_root/jt_tube_01
+        weight: 1
+      - path: jt_tube_root/jt_tube_01/jt_tube_02
+        weight: 1
+      - path: jt_tube_root/jt_tube_01/jt_tube_02/jt_tube_03
+        weight: 1
+      - path: MOD_Thoothpaste
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Thooth_Deckel
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Tube
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Tube/MOD_Opening
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hold
+      takeName: Take 001
+      firstFrame: 41
+      lastFrame: 50.0000038
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: jt_tube_root
+        weight: 1
+      - path: jt_tube_root/jt_tube_01
+        weight: 1
+      - path: jt_tube_root/jt_tube_01/jt_tube_02
+        weight: 1
+      - path: jt_tube_root/jt_tube_01/jt_tube_02/jt_tube_03
+        weight: 1
+      - path: MOD_Thoothpaste
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Thooth_Deckel
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Tube
+        weight: 1
+      - path: MOD_Thoothpaste/MOD_Tube/MOD_Opening
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 20
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
