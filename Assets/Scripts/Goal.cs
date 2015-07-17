@@ -10,10 +10,6 @@ public class Goal : MonoBehaviour {
 		// Check if the hit comes from a projectile
 		if(other.gameObject.tag == "Projectile") {
 			goalMet = true;
-			// Set alpha to higher opacity
-			Color c = GetComponent<Renderer>().material.color;
-			c.a = 1.0f;
-			GetComponent<Renderer>().material.color = c;
 		}
 	}
 }

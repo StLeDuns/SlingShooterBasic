@@ -28,6 +28,8 @@ public class GameController : MonoBehaviour
 	public GameObject castle; // The current castle
 	public GameState state = GameState.idle;
 	public string showing = "Slingshot"; // FollowCam mode
+
+	public static int Shots;
 	
 	void Start ()
 	{
@@ -71,6 +73,8 @@ public class GameController : MonoBehaviour
 	{
 		gtLevel.text = ": " + (level + 1) + " of " + levelMax;
 		gtScore.text = ": " + shotsTaken;
+		Shots=shotsTaken;
+
 	}
 
 	void Update ()
@@ -98,6 +102,7 @@ public class GameController : MonoBehaviour
 
 
 		if (level == levelMax) {
+
 			Application.LoadLevel ("EndScreen");
 		}
 		StartLevel ();
@@ -126,6 +131,7 @@ public class GameController : MonoBehaviour
 	public static void ShotFired ()
 	{
 		S.shotsTaken++;
+
 	}
 	
 	void PlaySound (int clip)
@@ -138,4 +144,10 @@ public class GameController : MonoBehaviour
 	{
 		Application.Quit ();
 	}
+	
+	public void RestartButtonPressed()
+	{
+		Application.LoadLevel ("Game");
+	}
+
 }
