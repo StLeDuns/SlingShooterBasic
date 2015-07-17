@@ -45,12 +45,6 @@ public class FollowCam : MonoBehaviour {
 			destination.y = 35.0f;
 				}
 
-		
-		if(destination.x >= 360.0f){
-			destination.x = 360.0f;
-		}
-
-
 		// Limit the X and Y to minimum values
 		destination.x = Mathf.Max (minXY.x, destination.x);
 		destination.y = Mathf.Max(minXY.y, destination.y);
@@ -67,5 +61,4 @@ public class FollowCam : MonoBehaviour {
 		// Set OrthographicSize of camera to keep the ground in view
 		this.GetComponent<Camera>().orthographicSize = destination.y + 10;
 	}
-
 }
